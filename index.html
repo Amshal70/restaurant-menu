@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <link rel="stylesheet" href="styles.css">  <!-- Link to the CSS file -->
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to Our Restaurant!</h1>
+        <p>Select a Category to Explore Our Menu</p>
+    </header>
+
+    <main>
+        <!-- Menu Categories Section -->
+        <section class="menu-section">
+            <h2>Select a Category:</h2>
+            <div class="menu-categories">
+                {% for category, items in menu.items() %}
+                <div class="menu-category">
+                    <button onclick="showItems('{{ category }}')">{{ category }}</button>
+                    <ul id="{{ category }}" class="menu-items">
+                        {% for item in items %}
+                        <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Feedback Section -->
+        <section class="feedback-section">
+            <button onclick="toggleFeedbackForm()">Write Feedback</button>
+            <div id="feedback-form" class="feedback-form">
+                <h2>Your Feedback:</h2>
+                <form id="feedbackForm">
+                    <label for="rating">Rating (1-5):</label>
+                    <input type="number" id="rating" name="rating" min="1" max="5" required><br><br>
+
+                    <label for="comments">Comments:</label><br>
+                    <textarea id="comments" name="comments" rows="4" cols="50"></textarea><br><br>
+
+                    <button type="submit">Submit Feedback</button>
+                </form>
+                <div id="feedback-response"></div>
+            </div>
+        </section>
+
+        <!-- Instagram Story Button -->
+        <section class="instagram-section">
+            <button onclick="addToInstagramStory()">Add to Instagram Story</button>
+        </section>
+
+        <!-- QR Code Generation Link -->
+        <section class="qr-section">
+            <a href="/generate_qr" target="_blank" class="generate-qr">Generate QR Code</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Restaurant Name. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
